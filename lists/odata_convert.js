@@ -28,7 +28,9 @@ function(head, req) {
 		}
 		else if (!isNaN(Date.parse(row.value[prop])))
 		{
-		    send('<d:'+prop+' m:type="Edm.DateTime">'+Date.parse(row.value[prop])+'</d:'+prop+'>');		    
+		    var d = Date.parse(row.value[prop]);
+		    var date = new Date(d).toUTCString();
+		    send('<d:'+prop+' m:type="Edm.DateTime">'+date+'</d:'+prop+'>');    
 		}
 		else
 		{
