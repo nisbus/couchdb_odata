@@ -1,6 +1,14 @@
 function(head, req) {
-    send('<?xml version="1.0" encoding="iso-8859-1" standalone="yes"?><feed xml:base="/_design/odata/" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">');
-    send('<title type="text"></title>');
+    var host = req.headers.Host;
+    var path = req.path;
+    var pathurl = "";
+    for(var b in path){
+	if (b < path.length-1)
+	    pathurl = pathurl+'/'+path[b];
+    }
+    var baseUrl = "http://"+host+pathurl;
+    send('<?xml version="1.0" encoding="iso-8859-1" standalone="yes"?><feed xml:base="'+baseUrl+'" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">');
+    send('<title type="text">'+path[path.length-1]+'</title>');
     var row;
     while(row = getRow())
     {
