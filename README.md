@@ -1,4 +1,15 @@
-An attempt to create a single show and a single list to serve all data from couchdb as an OData feed.  
+A show and a list to serve your data from couchdb as an OData feed.  
   
-Add the show and the list to your design document and you should be able to access your couchdb data through e.g. powerpivot in Excel.  
+==HowTo==    
   
+Copy the show and the list to a design document in your couchdb that has some views.  
+  
+To consume the feed go to your servers url for example:   
+  
+http://localhost:5984/mydb/_design/mydesign_doc/_show/odata_service/_design/mydesign_doc  
+  
+You can now point anything that is able to consume odata feeds to this location (ex. powerpivot for Excel) and browse through your couchdb data.  
+
+
+
+
